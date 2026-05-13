@@ -1,14 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AppComponent } from './app.component';
+import { EmployeeDashboardComponent } from './shared/component/employee-dashboard/employee-dashboard.component';
+import { EmployeeFormComponent } from './shared/component/employee-form/employee-form.component';
+import { EmployeeListComponent } from './shared/component/employee-list/employee-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EmployeeDashboardComponent,
+    EmployeeFormComponent,
+    EmployeeListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

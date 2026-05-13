@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-4">
+    <app-employee-form 
+    (emitNewemployeeObj)="getNewEmployee($event)"> </app-employee-form>
+  </div>
+  <div class="col-md-8" *ngIf="employeeArr.length>0 ; else noData">
+    <app-employee-list [getAllemployee]="employeeArr"></app-employee-list>
+  </div>
+  <ng-template #noData>
+    <p class="alert alert-info">No Employee In Database...!</p>
+  </ng-template>
+</div>
