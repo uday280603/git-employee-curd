@@ -16,6 +16,6 @@
             </select>
         </div>
         <button *ngIf="!isInEditmode" class="btn btn-block btn-primary" (click)="onAddEmployee()">Add Employee</button>
-        <button *ngIf="isInEditmode" class="btn btn-block btn-info">Update Employee</button>
+        <button *ngIf="isInEditmode" class="btn btn-block btn-info" (click)="onUpdateEmployee()">Update Employee</button>
     </div>
 </div>

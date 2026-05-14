@@ -18,8 +18,8 @@
             <td>{{ emp.empName }}</td>
             <td>{{ emp.empSalary }}</td>
             <td>{{ emp.isActive ? 'Yes' :'No' }}</td>
-            <td><button class="btn btn-sm btn-primary">Edit</button></td>
-            <td><button class="btn btn-sm btn-danger">Delete</button></td>
+            <td><button class="btn btn-sm btn-primary"(click)="onEditemployee(emp)">Edit</button></td>
+            <td><button class="btn btn-sm btn-danger" (click)="onRemoveEmployee(emp.empId)">Delete</button></td>
           </tr>
         </tbody>
       </table>

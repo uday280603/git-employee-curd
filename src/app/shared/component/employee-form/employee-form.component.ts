@@ -2,8 +2,11 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  Input,
+  OnChanges,
   OnInit,
   Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { Iemployee } from '../../interface/Iemployee';
@@ -13,7 +16,8 @@ import { Iemployee } from '../../interface/Iemployee';
   templateUrl: './employee-form.component.html',
   styleUrls: ['./employee-form.component.scss'],
 })
-export class EmployeeFormComponent implements OnInit {
+export class EmployeeFormComponent implements OnInit, OnChanges {
+  @Input() editObj!: Iemployee;
   isInEditmode: boolean = false;
 
   @ViewChild('empName') empName!: ElementRef;
@@ -23,7 +27,18 @@ export class EmployeeFormComponent implements OnInit {
   @Output() emitNewemployeeObj: EventEmitter<Iemployee> =
     new EventEmitter<Iemployee>();
 
+  @Output() emitUpdatedObj: EventEmitter<Iemployee> =
+    new EventEmitter<Iemployee>();
+
   constructor() {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!!changes['editObj'].currentValue) {
+      this.isInEditmode = true;
+      this.empName.nativeElement.value = this.editObj.empName;
+      this.empSalary.nativeElement.value = this.editObj.empSalary;
+      this.isActive.nativeElement.value = this.editObj.isActive;
+    }
+  }
 
   ngOnInit(): void {}
 
@@ -46,5 +61,21 @@ export class EmployeeFormComponent implements OnInit {
       this.empSalary.nativeElement.value = '';
       this.isActive.nativeElement.value = true;
     }
+  }
+
+  onUpdateEmployee() {
+    let UPDATE_OBJ: Iemployee = {
+      empId: this.editObj.empId,
+      empName: this.empName.nativeElement.value,
+      empSalary: this.empSalary.nativeElement.value,
+      isActive: this.isActive.nativeElement.value === 'true' ? true : false,
+    };
+
+    // console.log(UPDATE_OBJ);
+    this.emitUpdatedObj.emit(UPDATE_OBJ);
+    this.empName.nativeElement.value = '';
+    this.empSalary.nativeElement.value = '';
+    this.isActive.nativeElement.value = true;
+    this.isInEditmode = false;
   }
 }

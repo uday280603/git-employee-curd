@@ -6,19 +6,26 @@ import { EmployeeDashboardComponent } from './shared/component/employee-dashboar
 import { EmployeeFormComponent } from './shared/component/employee-form/employee-form.component';
 import { EmployeeListComponent } from './shared/component/employee-list/employee-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogComponent } from './shared/component/mat-dialog/mat-dialog.component';
+import { MatButtonModule } from "@angular/material/button";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeDashboardComponent,
     EmployeeFormComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    MatDialogComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatSnackBarModule
-  ],
+    MatSnackBarModule,
+    MatDialogModule,
+    MatButtonModule
+],
   providers: [],
   bootstrap: [AppComponent]
 })
